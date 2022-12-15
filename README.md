@@ -12,4 +12,10 @@ We can install strace in container
 
 
 We wanted to check the tracing ablity for ebpf inside docker
-`docker build -t <imagename> .`
+
+To build docker image
+`sudo docker build -t <imagename> .`
+
+upon success
+
+`sudo docker run --privileged -i <imagename>`
