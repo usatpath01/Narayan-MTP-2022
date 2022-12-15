@@ -15,6 +15,6 @@ WORKDIR /myspace/bcc/build/src/python/
 RUN make
 RUN make install
 WORKDIR /myspace/programs
-COPY ./ebpf_test_programs/* ./
+COPY ./* ./
 RUN apt update
 RUN apt install -y linux-headers-$(uname -r)
