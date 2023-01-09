@@ -1,4 +1,5 @@
 #usage
+#sudo python3 -i main0.py  -b -s execve -n 32
 #sudo python3 -b -e -n 16 -s execve
 #-b to chain the tail calls at the begining
 #-e to chain the tail calls at the end
