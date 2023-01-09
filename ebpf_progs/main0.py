@@ -57,7 +57,13 @@ int kprobe__sys_%s(struct pt_regs *ctx,int dirfd,char __user* pathname, int flag
 int kretprobe__sys_%s(struct pt_regs *ctx,int dirfd,char __user* pathname, int flags, mode_t mode) {
     u64 uid = bpf_get_current_uid_gid() & 0xFFFFFFFF;
     if(uid==0){
-        fgs.atomic_increment(0);
+        //fgs.atomic_increment(0);
+        int z = 0;
+        u64 *key = fgs.lookup(&z);
+        if(key == NULL ) return 1;
+        u64 zz = *key;
+        zz++;
+        fgs.update(&z,&zz);
         //u64 t = bpf_ktime_get_ns();
         %s
     }
