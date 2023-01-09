@@ -106,7 +106,7 @@ print("Compiled")
 def printvals():
     n=b["fgs"][0].value
     #with open('%s%s.csv'%(syscall,num), 'w') as sys.stdout:
-    print("start time ,%tail call end time ,syscall end time ,time to run tail calls ,time to run syscall ,total time to run"))
+    print("start time ,%tail call end time ,syscall end time ,time to run tail calls ,time to run syscall ,total time to run")
     for i in range(n):
         t1=b["themap"][numcol*i].value
         t2=b["themap"][numcol*i+1].value
