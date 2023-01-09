@@ -103,12 +103,16 @@ for i in range(1,num+1):
     hello.append( b.load_func("hello%d"%i, BPF.KPROBE))
     prog_array[c_int(i)] = c_int(hello[i].fd)
 print("Compiled")
+mydata=[]
 def printvals():
     n=b["fgs"][0].value
     #with open('%s%s.csv'%(syscall,num), 'w') as sys.stdout:
-    print("start time ,tail call end time ,syscall end time ,time to run tail calls ,time to run syscall ,total time to run")
     for i in range(n):
         t1=b["themap"][numcol*i].value
         t2=b["themap"][numcol*i+1].value
         t3=b["themap"][numcol*i+2].value
-        print("%d ,%d ,%d ,%d ,%d ,%d"%(t1,t2,t3,t2-t1,t3-t2,t3-t1))
+        mydata.append([t1,t2,t3])
+    with open('%s%s.csv'%(syscall,num), 'w') as sys.stdout:
+        print("start time ,tail call end time ,syscall end time ,time to run tail calls ,time to run syscall ,total time to run")
+        for i in range(n):
+            print("%d ,%d ,%d ,%d ,%d ,%d"%(mydata[i][0],mydata[i][1],mydata[i][2],mydata[i][1]-mydata[i][0],mydata[i][2]-mydata[i][1],mydata[i][2]-mydata[i][0]))
